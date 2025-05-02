@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: isgo-api
+    runtime: python
+    buildCommand: ""
+    startCommand: uvicorn servidor_api:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: DB_HOST
+        value: localhost
+      - key: DB_PORT
+        value: 5432
+      - key: DB_NAME
+        value: bienes
+      - key: DB_USER
+        value: postgres
+      - key: DB_PASS
+        value: ITSPisai10@@
+      - key: AGENT_SECRET
+        value: isgo123
