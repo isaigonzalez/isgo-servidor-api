@@ -11,11 +11,11 @@ app = FastAPI()
 AGENT_SECRET = "isgo123"
 
 # 🔐 Configuración de conexión a PostgreSQL
-DB_HOST = "localhost"
+DB_HOST = "dpg-d0a6sejuibrs73b5p8hg-a.oregon-postgres.render.com"
 DB_PORT = "5432"
 DB_NAME = "bienes"
-DB_USER = "postgres"
-DB_PASS = "ITSPisai10@@"  # ← tu contraseña real aquí
+DB_USER = "bienes_user"
+DB_PASS = "xpQEaq9az2Epj5iT8nS3OBliMreSFuRA"  # ← tu contraseña real aquí
 
 # Función para guardar en PostgreSQL
 def guardar_en_postgres(datos_json):
