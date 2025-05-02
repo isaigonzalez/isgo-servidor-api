@@ -29,7 +29,7 @@ def guardar_en_postgres(datos_json):
         )
         cur = conn.cursor()
         cur.execute(
-            "INSERT INTO equipos (fecha_reporte, datos) VALUES (%s, %s);",
+            "INSERT INTO public.equipos (fecha_reporte, datos) VALUES (%s, %s);",
             (datetime.now(), Json(datos_json))
         )
         conn.commit()
@@ -92,7 +92,7 @@ async def ver_reportes():
             password=DB_PASS
         )
         cur = conn.cursor()
-        cur.execute("SELECT fecha_reporte, datos FROM equipos ORDER BY fecha_reporte DESC;")
+        cur.execute("SELECT fecha_reporte, datos FROM public.equipos ORDER BY fecha_reporte DESC;")
         registros = cur.fetchall()
 
         for fecha, datos in registros:
