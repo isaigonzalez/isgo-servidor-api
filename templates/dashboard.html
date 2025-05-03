@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de Equipos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header .host {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .fecha {
+            font-size: 0.85em;
+            color: #888;
+        }
+
+        .line {
+            margin: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info {
+            font-size: 0.95em;
+            margin: 6px 0;
+            display: flex;
+            align-items: center;
+            color: #333;
+        }
+
+        .info i {
+            width: 20px;
+            margin-right: 10px;
+            color: #3498db;
+        }
+
+        .battery-low { color: #e74c3c; }
+        .battery-mid { color: #f1c40f; }
+        .battery-high { color: #2ecc71; }
+    </style>
+</head>
+<body>
+    <h1>📊 Dashboard de Equipos Reportados</h1>
+    <div class="cards">
+        {% for item in datos %}
+        <div class="card">
+            <div class="header">
+                <div class="host"><i class="fas fa-desktop"></i> {{ item[1] }}</div>
+                <div class="fecha">{{ item[0] }}</div>
+            </div>
+            <div class="line"></div>
+            <div class="info"><i class="fas fa-network-wired"></i> IP: {{ item[2] }}</div>
+            <div class="info"><i class="fab fa-windows"></i> SO: {{ item[3] }}</div>
+            <div class="info"><i class="fas fa-memory"></i> RAM: {{ item[4] }} GB</div>
+            <div class="info"><i class="fas fa-microchip"></i> CPU: {{ item[5] }}</div>
+            <div class="info"><i class="fas fa-industry"></i> Fabricante: {{ item[6] }}</div>
+            <div class="info"><i class="fas fa-code-branch"></i> Familia CPU: {{ item[7] }}</div>
+            <div class="info">
+                <i class="fas fa-battery-half {% if item[8]|int < 30 %}battery-low{% elif item[8]|int < 70 %}battery-mid{% else %}battery-high{% endif %}"></i>
+                Batería: {{ item[8] }}%
+            </div>
+            <div class="info"><i class="fas fa-shield-alt"></i> Antivirus: {{ item[9] }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
